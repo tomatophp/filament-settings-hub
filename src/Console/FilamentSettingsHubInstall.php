@@ -3,6 +3,7 @@
 namespace TomatoPHP\FilamentSettingsHub\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 use TomatoPHP\ConsoleHelpers\Traits\RunCommand;
 
 class FilamentSettingsHubInstall extends Command
@@ -37,11 +38,16 @@ class FilamentSettingsHubInstall extends Command
     public function handle()
     {
         $this->info('Publish Vendor Assets');
+        //Register migrations
+        if (! class_exists('SitesSettings')) {
+            $stubPath =  __DIR__ . '/../../database/migrations/sites_settings.php.stub';
+            $databasePath = database_path('migrations/' . date('Y_m_d_His', time()) . '_sites_settings.php');
+
+            File::copy($stubPath, $databasePath);
+        }
         $this->callSilent('optimize:clear');
-        $this->yarnCommand(['install']);
-        $this->yarnCommand(['build']);
         $this->artisanCommand(["migrate"]);
         $this->artisanCommand(["optimize:clear"]);
-        $this->info('filamentSettingsHub installed successfully.');
+        $this->info('Filament Settings Hub installed successfully.');
     }
 }

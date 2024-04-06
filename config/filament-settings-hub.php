@@ -1,5 +1,5 @@
 <?php
 
 return [
-    //You config go here...
+    "show_hint" => true
 ];

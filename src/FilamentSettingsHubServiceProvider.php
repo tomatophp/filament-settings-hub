@@ -3,7 +3,11 @@
 namespace TomatoPHP\FilamentSettingsHub;
 
 use Illuminate\Support\ServiceProvider;
+use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
+use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
+use TomatoPHP\FilamentSettingsHub\Services\SettingHolderHandler;
 
+require_once __DIR__.'/helpers.php';
 
 class FilamentSettingsHubServiceProvider extends ServiceProvider
 {
@@ -45,13 +49,33 @@ class FilamentSettingsHubServiceProvider extends ServiceProvider
            __DIR__.'/../resources/lang' => base_path('lang/vendor/filament-settings-hub'),
         ], 'filament-settings-hub-lang');
 
-        //Register Routes
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
+        $this->app->bind('filament-settings-hub', function () {
+            return new SettingHolderHandler();
+        });
     }
 
     public function boot(): void
     {
-        //you boot methods here
+        FilamentSettingsHub::register([
+            SettingHold::make()
+                ->label(__('Site Settings'))
+                ->icon('heroicon-o-globe-alt')
+                ->route('filament.admin.pages.site-settings')
+                ->description(__('Name, Logo, Site Profile'))
+                ->group(__('General')),
+            SettingHold::make()
+                ->label(__('Social Menus'))
+                ->icon('heroicon-s-bars-3')
+                ->route('filament.admin.pages.social-menu-settings')
+                ->description(__('Add Social Media Links'))
+                ->group(__('General')),
+            SettingHold::make()
+                ->label(__('Location'))
+                ->icon('heroicon-o-map')
+                ->route('filament.admin.pages.location-settings')
+                ->description(__('Address, Location, Currency, Language'))
+                ->group(__('General')),
+        ]);
     }
 }

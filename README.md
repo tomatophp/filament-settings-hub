@@ -4,16 +4,71 @@
 
 Manage your app settings with GUI and helpers
 
+## Screenshots
+
+![Screenshot](./arts/setting-hub.png)
+![Screenshot](./arts/setting-page.png)
+
+
 ## Installation
 
 ```bash
 composer require tomatophp/filament-settings-hub
 ```
-after install your package please run this command
+
+now you need to publish and migrate settings table
+
+```bash
+php artisan vendor:publish --provider="Spatie\LaravelSettings\LaravelSettingsServiceProvider" --tag="migrations"
+```
+
+after publish and migrate settings table please run this command
 
 ```bash
 php artisan filament-settings-hub:install
 ```
+
+finally reigster the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
+
+```php
+->plugin(\TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make())
+```
+
+## Usage
+
+you can use this package by use this helper function
+
+```php
+settings($key);
+```
+
+to register new setting to the hub page you can use Facade class on your provider like this
+
+```php
+use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
+use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
+
+FilamentSettingsHub::register([
+    SettingHold::make()
+        ->label(__('Site Settings'))
+        ->icon('heroicon-o-globe-alt')
+        ->route('filament.admin.pages.site-settings')
+        ->description(__('Name, Logo, Site Profile'))
+        ->group(__('General')),
+]);
+
+```
+
+and now you can see your settings on the setting hub page.
+
+we have a ready to use helper for currency settings
+
+```php
+dollar($amount)
+```
+
+it will return the money amount with the currency symbol
+
 
 ## Publish Assets
 
