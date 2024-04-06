@@ -59,7 +59,6 @@ class SettingHold
      */
     public string|array|null $group = "resources";
 
-
     /**
      * @return static
      */

@@ -59,23 +59,23 @@ class FilamentSettingsHubServiceProvider extends ServiceProvider
     {
         FilamentSettingsHub::register([
             SettingHold::make()
-                ->label(__('Site Settings'))
+                ->label('filament-settings-hub::messages.settings.site.title')
                 ->icon('heroicon-o-globe-alt')
                 ->route('filament.admin.pages.site-settings')
-                ->description(__('Name, Logo, Site Profile'))
-                ->group(__('General')),
+                ->description('filament-settings-hub::messages.settings.site.description')
+                ->group('filament-settings-hub::messages.group'),
             SettingHold::make()
-                ->label(__('Social Menus'))
+                ->label('filament-settings-hub::messages.settings.social.title')
                 ->icon('heroicon-s-bars-3')
                 ->route('filament.admin.pages.social-menu-settings')
-                ->description(__('Add Social Media Links'))
-                ->group(__('General')),
+                ->description('filament-settings-hub::messages.settings.social.description')
+                ->group('filament-settings-hub::messages.group'),
             SettingHold::make()
-                ->label(__('Location'))
+                ->label('filament-settings-hub::messages.settings.location.title')
                 ->icon('heroicon-o-map')
                 ->route('filament.admin.pages.location-settings')
-                ->description(__('Address, Location, Currency, Language'))
-                ->group(__('General')),
+                ->description('filament-settings-hub::messages.settings.location.description')
+                ->group('filament-settings-hub::messages.group'),
         ]);
     }
 }

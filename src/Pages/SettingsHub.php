@@ -6,7 +6,6 @@ use Filament\Pages\Page;
 
 class SettingsHub extends Page
 {
-    public static ?string $title = 'Settings';
 
     public static ?string $navigationIcon = 'heroicon-o-cog';
 
@@ -19,8 +18,11 @@ class SettingsHub extends Page
 
     public function getTitle(): string
     {
-        return "Settings";
+        return trans('filament-settings-hub::messages.title');
     }
 
-
+    public static function getNavigationLabel(): string
+    {
+        return trans('filament-settings-hub::messages.title');
+    }
 }

@@ -23,13 +23,13 @@ class SocialMenuSettings extends SettingsPage
 
     public function getTitle(): string
     {
-        return "Social Menu";
+        return trans('filament-settings-hub::messages.settings.social.title');
     }
 
     protected function getActions(): array
     {
         return [
-            Action::make('back')->action(fn()=> redirect()->route('filament.admin.pages.settings-hub'))->color('danger')->label(__('Back')),
+            Action::make('back')->action(fn()=> redirect()->route('filament.admin.pages.settings-hub'))->color('danger')->label(trans('filament-settings-hub::messages.back')),
         ];
     }
 
@@ -43,9 +43,10 @@ class SocialMenuSettings extends SettingsPage
         return [
             Grid::make(['default' => 1])->schema([
                 Repeater::make('site_social')
+                    ->label(trans('filament-settings-hub::messages.settings.social.form.site_social'))
                     ->schema([
-                        TextInput::make('vendor'),
-                        TextInput::make('link')->url(),
+                        TextInput::make('vendor')->label(trans('filament-settings-hub::messages.settings.social.form.vendor')),
+                        TextInput::make('link')->url()->label(trans('filament-settings-hub::messages.settings.social.form.link')),
                     ])
                     ->hint(config('filament-settings-hub.show_hint') ?'setting("site_social")': null),
             ])
