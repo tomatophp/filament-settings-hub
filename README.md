@@ -6,7 +6,7 @@ Manage your app settings with GUI and helpers
 
 ## Screenshots
 
-![Screenshot](./arts/setting-hub.png)
+![Screenshot](./arts/settings-hub.png)
 ![Screenshot](./arts/setting-page.png)
 
 
