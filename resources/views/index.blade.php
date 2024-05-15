@@ -1,6 +1,6 @@
 <x-filament-panels::page>
     @php
-        $settings = \TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub::load()->groupBy('group');
+        $settings = \TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub::load()->groupBy('group')->reverse();
         $tenant = \Filament\Facades\Filament::getTenant();
     @endphp
 
