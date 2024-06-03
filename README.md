@@ -1,4 +1,4 @@
-![Screenshot](https://github.com/tomatophp/filament-settings-hub/blob/master/arts/3x1io-tomato-settings-hub.jpg)
+![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/3x1io-tomato-settings-hub.jpg)
 
 # Filament settings hub
 
@@ -11,8 +11,8 @@ Manage your app settings with GUI and helpers
 
 ## Screenshots
 
-![Screenshot](https://github.com/tomatophp/filament-settings-hub/blob/master/arts/settings-hub.png)
-![Screenshot](https://github.com/tomatophp/filament-settings-hub/blob/master/arts/setting-page.png)
+![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/settings-hub.png)
+![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/setting-page.png)
 
 
 ## Installation
