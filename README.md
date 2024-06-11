@@ -1,13 +1,13 @@
 ![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/3x1io-tomato-settings-hub.jpg)
 
-# Filament settings hub
+# Filament Settings Hub
 
 [![Latest Stable Version](https://poser.pugx.org/tomatophp/filament-settings-hub/version.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 [![PHP Version Require](http://poser.pugx.org/tomatophp/filament-settings-hub/require/php)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 [![License](https://poser.pugx.org/tomatophp/filament-settings-hub/license.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 [![Downloads](https://poser.pugx.org/tomatophp/filament-settings-hub/d/total.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 
-Manage your app settings with GUI and helpers
+Manage your Filament app settings with GUI and helpers
 
 ## Screenshots
 
@@ -100,6 +100,24 @@ you can publish migrations file by use this command
 ```bash
 php artisan vendor:publish --tag="filament-settings-hub-migrations"
 ```
+
+## Other Filament Packages
+
+- [Filament Users Resource](https://www.github.com/tomatophp/filament-users)
+- [Filament Translations](https://www.github.com/tomatophp/filament-translations)
+- [Filament Menus Generator](https://www.github.com/tomatophp/filament-menus)
+- [Filament Alerts Sender](https://www.github.com/tomatophp/filament-alerts)
+- [Filament Accounts Builder](https://www.github.com/tomatophp/filament-accounts)
+- [Filament Wallet Manager](https://www.github.com/tomatophp/filament-wallet)
+- [Filament Artisan Runner](https://www.github.com/tomatophp/filament-artisan)
+- [Filament File Browser](https://www.github.com/tomatophp/filament-browser)
+- [Filament Developer Gate](https://www.github.com/tomatophp/filament-developer-gate)
+- [Filament Locations Seeder](https://www.github.com/tomatophp/filament-locations)
+- [Filament Plugins Manager](https://www.github.com/tomatophp/filament-plugins)
+- [Filament Splade Integration](https://www.github.com/tomatophp/filament-splade)
+- [Filament Types Manager](https://www.github.com/tomatophp/filament-types)
+- [Filament Icons Picker](https://www.github.com/tomatophp/filament-icons)
+- [Filament Helpers Classes](https://www.github.com/tomatophp/filament-helpers)
 
 ## Support
 

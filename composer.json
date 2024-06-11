@@ -1,11 +1,14 @@
 {
     "name": "tomatophp/filament-settings-hub",
     "type": "library",
-    "description": "Manage your app settings with GUI and helpers",
+    "description": "Manage your Filament app settings with GUI and helpers",
     "keywords": [
         "php",
         "laravel",
-        "template"
+        "settings",
+        "filament",
+        "tomatophp",
+        "spatie-integrations"
     ],
     "license": "MIT",
     "autoload": {
