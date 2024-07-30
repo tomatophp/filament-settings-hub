@@ -57,25 +57,6 @@ class FilamentSettingsHubServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        FilamentSettingsHub::register([
-            SettingHold::make()
-                ->label('filament-settings-hub::messages.settings.site.title')
-                ->icon('heroicon-o-globe-alt')
-                ->route('filament.'.filament()->getCurrentPanel()->getId().'.pages.site-settings')
-                ->description('filament-settings-hub::messages.settings.site.description')
-                ->group('filament-settings-hub::messages.group'),
-            SettingHold::make()
-                ->label('filament-settings-hub::messages.settings.social.title')
-                ->icon('heroicon-s-bars-3')
-                ->route('filament.'.filament()->getCurrentPanel()->getId().'.pages.social-menu-settings')
-                ->description('filament-settings-hub::messages.settings.social.description')
-                ->group('filament-settings-hub::messages.group'),
-            SettingHold::make()
-                ->label('filament-settings-hub::messages.settings.location.title')
-                ->icon('heroicon-o-map')
-                ->route('filament.'.filament()->getCurrentPanel()->getId().'.pages.location-settings')
-                ->description('filament-settings-hub::messages.settings.location.description')
-                ->group('filament-settings-hub::messages.group'),
-        ]);
+        //
     }
 }
