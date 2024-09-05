@@ -13,7 +13,7 @@ class SettingsHub extends Page
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Settings';
+        return trans('filament-settings-hub::messages.group');
     }
 
     public function getTitle(): string
