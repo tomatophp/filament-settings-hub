@@ -4,6 +4,7 @@ namespace TomatoPHP\FilamentSettingsHub;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
+use Filament\Support\Concerns\EvaluatesClosures;
 use Illuminate\View\View;
 use Kenepa\TranslationManager\Http\Middleware\SetLanguage;
 use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
@@ -16,44 +17,119 @@ use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 
 class FilamentSettingsHubPlugin implements Plugin
 {
+    use EvaluatesClosures;
+
+    public static bool|\Closure $allowSiteSettings = true;
+    public static bool|\Closure $allowSocialMenuSettings = true;
+    public static bool|\Closure $allowLocationSettings = true;
+    public static bool|\Closure $allowShield = false;
+
     public function getId(): string
     {
         return 'filament-settings-hub';
     }
 
+    public function allowShield(bool|\Closure $allow = true): static
+    {
+        static::$allowShield = $allow;
+        return $this;
+    }
+
+    public function allowSiteSettings(bool|\Closure $allow = true): static
+    {
+        static::$allowSiteSettings = $allow;
+        return $this;
+    }
+
+    public function allowSocialMenuSettings(bool|\Closure $allow = true): static
+    {
+        static::$allowSocialMenuSettings = $allow;
+        return $this;
+    }
+
+    public function isSiteSettingAllowed(): bool
+    {
+        return $this->evaluate(static::$allowSiteSettings);
+    }
+
+    public function isSocialMenuSettingAllowed(): bool
+    {
+        return $this->evaluate(static::$allowSocialMenuSettings);
+    }
+
+    public function isLocationSettingAllowed(): bool
+    {
+        return $this->evaluate(static::$allowLocationSettings);
+    }
+
+    public function isShieldAllowed(): bool
+    {
+        return $this->evaluate(static::$allowShield);
+    }
+
+    public function allowLocationSettings(bool|\Closure $allow = true): static
+    {
+        static::$allowLocationSettings = $allow;
+        return $this;
+    }
+
     public function register(Panel $panel): void
     {
-        $panel->pages([
-                SettingsHub::class,
-                SiteSettings::class,
-                SocialMenuSettings::class,
-                LocationSettings::class
-            ]);
+        $pages = [];
+
+        if($this->isSiteSettingAllowed()){
+            $pages[] = SiteSettings::class;
+        }
+
+        if($this->isSocialMenuSettingAllowed()){
+            $pages[] = SocialMenuSettings::class;
+        }
+
+        if($this->isLocationSettingAllowed()){
+            $pages[] = LocationSettings::class;
+        }
+
+        $pages[] = SettingsHub::class;
+
+        $panel->pages($pages);
 
     }
 
     public function boot(Panel $panel): void
     {
-        FilamentSettingsHub::register([
-            SettingHold::make()
+        $settings = [];
+
+        if($this->isSiteSettingAllowed()){
+            $settings[] = SettingHold::make()
+                ->page(SiteSettings::class)
+                ->order(0)
                 ->label('filament-settings-hub::messages.settings.site.title')
                 ->icon('heroicon-o-globe-alt')
-                ->route('filament.'.filament()->getCurrentPanel()->getId().'.pages.site-settings')
                 ->description('filament-settings-hub::messages.settings.site.description')
-                ->group('filament-settings-hub::messages.group'),
-            SettingHold::make()
+                ->group('filament-settings-hub::messages.group');
+        }
+
+        if($this->isSocialMenuSettingAllowed()){
+            $settings[] = SettingHold::make()
+                ->page(SocialMenuSettings::class)
+                ->order(0)
                 ->label('filament-settings-hub::messages.settings.social.title')
                 ->icon('heroicon-s-bars-3')
-                ->route('filament.'.filament()->getCurrentPanel()->getId().'.pages.social-menu-settings')
                 ->description('filament-settings-hub::messages.settings.social.description')
-                ->group('filament-settings-hub::messages.group'),
-            SettingHold::make()
+                ->group('filament-settings-hub::messages.group');
+        }
+
+        if($this->isLocationSettingAllowed()){
+            $settings[] = SettingHold::make()
+                ->page(LocationSettings::class)
+                ->order(0)
                 ->label('filament-settings-hub::messages.settings.location.title')
                 ->icon('heroicon-o-map')
-                ->route('filament.'.filament()->getCurrentPanel()->getId().'.pages.location-settings')
                 ->description('filament-settings-hub::messages.settings.location.description')
-                ->group('filament-settings-hub::messages.group'),
-        ]);
+                ->group('filament-settings-hub::messages.group');
+        }
+
+        FilamentSettingsHub::register($settings);
     }
 
     public static function make(): static

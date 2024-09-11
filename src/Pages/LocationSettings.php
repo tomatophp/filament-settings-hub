@@ -13,10 +13,13 @@ use Filament\Forms\Components\TextInput;
 use Filament\Pages\Actions\ButtonAction;
 use Filament\Forms\Components\FileUpload;
 use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
 
 
 class LocationSettings extends SettingsPage
 {
+    use UseShield;
+
     protected static ?string $navigationIcon = 'heroicon-o-cog';
 
     protected static string $settings = SitesSettings::class;
@@ -25,6 +28,7 @@ class LocationSettings extends SettingsPage
     {
         return false;
     }
+
 
     protected function getActions(): array
     {

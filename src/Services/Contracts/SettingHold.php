@@ -2,6 +2,7 @@
 
 namespace TomatoPHP\FilamentSettingsHub\Services\Contracts;
 
+use Filament\Resources\Pages\Page;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cookie;
 use TomatoPHP\TomatoAdmin\Facade\TomatoWidget as TomatoWidgetFacade;
@@ -54,10 +55,14 @@ class SettingHold
      */
     public ?string $color = null;
 
+    public ?string $page = null;
+
     /**
      * @var string|null
      */
     public string|array|null $group = "resources";
+
+    public int $order = 1;
 
     /**
      * @return static
@@ -78,11 +83,19 @@ class SettingHold
             "icon" => $this->icon ?? null,
             "target" => $this->target ?? null,
             "url" => $this->url ?? null,
+            "page" => $this->page ?? null,
             "route" => $this->route ?? null,
             "badge" => $this->badge ?? null,
             "color" => $this->color ?? null,
             "group" => $this->group ?? null,
+            "order" => $this->order ?? 1,
         ]);
+    }
+
+    public function order(int $order): static
+    {
+        $this->order = $order;
+        return $this;
     }
 
 
@@ -93,6 +106,12 @@ class SettingHold
     public function label(string $label): static
     {
         $this->label = $label;
+        return $this;
+    }
+
+    public function page(string $page): static
+    {
+        $this->page = $page;
         return $this;
     }
 

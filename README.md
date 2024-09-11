@@ -3,7 +3,6 @@
 # Filament Settings Hub
 
 [![Latest Stable Version](https://poser.pugx.org/tomatophp/filament-settings-hub/version.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
-[![PHP Version Require](http://poser.pugx.org/tomatophp/filament-settings-hub/require/php)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 [![License](https://poser.pugx.org/tomatophp/filament-settings-hub/license.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 [![Downloads](https://poser.pugx.org/tomatophp/filament-settings-hub/d/total.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 
@@ -36,7 +35,12 @@ php artisan filament-settings-hub:install
 finally reigster the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
 
 ```php
-->plugin(\TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make())
+->plugin(
+    \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
+        ->allowLocationSettings()
+        ->allowSiteSettings()
+        ->allowSocialMenuSettings()
+)
 ```
 
 ## Usage
@@ -55,11 +59,13 @@ use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 
 FilamentSettingsHub::register([
     SettingHold::make()
-        ->label(__('Site Settings'))
+        ->order(2)
+        ->label('Site Settings') // to translate label just use direct translation path like `messages.text.name`
         ->icon('heroicon-o-globe-alt')
-        ->route('filament.admin.pages.site-settings')
-        ->description(__('Name, Logo, Site Profile'))
-        ->group(__('General')),
+        ->route('filament.admin.pages.site-settings') // use page / route
+        ->page(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::class) // use page / route 
+        ->description('Name, Logo, Site Profile') // to translate label just use direct translation path like `messages.text.name`
+        ->group('General') // to translate label just use direct translation path like `messages.text.name`,
 ]);
 
 ```
@@ -74,6 +80,15 @@ dollar($amount)
 
 it will return the money amount with the currency symbol
 
+## Allow Shield 
+
+to allow [filament-shield](https://github.com/bezhanSalleh/filament-shield) for the settings please install it and config it first then you can use this method
+
+```php
+->plugin(
+    \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
+        ->allowShield()
+)
 
 ## Publish Assets
 

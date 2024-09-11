@@ -4,6 +4,8 @@ namespace TomatoPHP\FilamentSettingsHub\Services\Services;
 
 namespace TomatoPHP\FilamentSettingsHub\Facades\TomatoSettings;
 
+use Illuminate\Support\Facades\Route;
+
 class SettingHolder
 {
     public Collection $settings;

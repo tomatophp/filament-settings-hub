@@ -2,10 +2,14 @@
 
 namespace TomatoPHP\FilamentSettingsHub\Pages;
 
+use BezhanSalleh\FilamentShield\Support\Utils;
+use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
 use Filament\Pages\Actions\Action;
 use Filament\Pages\SettingsPage;
 use Filament\Forms\Components\Grid;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 use Spatie\Sitemap\SitemapGenerator;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
@@ -13,10 +17,13 @@ use Filament\Forms\Components\TextInput;
 use Filament\Pages\Actions\ButtonAction;
 use Filament\Forms\Components\FileUpload;
 use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
 
 
 class SocialMenuSettings extends SettingsPage
 {
+    use UseShield;
+
     protected static ?string $navigationIcon = 'heroicon-o-cog';
 
     protected static string $settings = SitesSettings::class;
