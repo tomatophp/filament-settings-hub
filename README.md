@@ -89,6 +89,13 @@ to allow [filament-shield](https://github.com/bezhanSalleh/filament-shield) for 
     \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
         ->allowShield()
 )
+```
+
+to make a secure setting page just use this trait 
+
+```php
+use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
+```
 
 ## Publish Assets
 
