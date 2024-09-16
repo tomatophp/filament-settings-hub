@@ -1,0 +1,29 @@
+{
+    "name": "FilamentSettingsHub",
+    "alias": "filament-settings-hub",
+    "description": {
+        "ar": "قم بإدارة الإعدادات من خلال واجهة المستخدم",
+        "en": "Manage your app settings with GUI and helpers",
+        "gr": "Manage your app settings with GUI and helpers",
+        "sp": "Manage your app settings with GUI and helpers"
+    },
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "TomatoPHP\\FilamentSettingsHub\\FilamentSettingsHubServiceProvider"
+    ],
+    "files": [],
+    "title": {
+        "ar": "الإعدادات",
+        "en": "Settings Hub",
+        "gr": "Settings Hub",
+        "sp": "Settings Hub"
+    },
+    "color": "#cc1448",
+    "icon": "heroicon-c-cog",
+    "placeholder": "https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/3x1io-tomato-settings-hub.jpg",
+    "type": "plugin",
+    "version": "v1.0.24",
+    "github" : "https://github.com/tomatophp/filament-settings-hub",
+    "docs" : "https://github.com/tomatophp/filament-settings-hub"
+}

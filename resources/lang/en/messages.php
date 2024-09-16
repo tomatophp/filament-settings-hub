@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'title' => 'Settings Hub',
-    'group' => 'General',
+    'title' => 'Settings',
+    'group' => 'Settings',
     'back' => 'Back',
     'settings' => [
         'site' => [

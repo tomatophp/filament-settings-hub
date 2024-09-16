@@ -7,6 +7,7 @@ use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
 use Illuminate\View\View;
 use Kenepa\TranslationManager\Http\Middleware\SetLanguage;
+use Nwidart\Modules\Module;
 use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
 use TomatoPHP\FilamentSettingsHub\Pages\LocationSettings;
 use TomatoPHP\FilamentSettingsHub\Pages\SettingsHub;
@@ -23,6 +24,8 @@ class FilamentSettingsHubPlugin implements Plugin
     public static bool|\Closure $allowSocialMenuSettings = true;
     public static bool|\Closure $allowLocationSettings = true;
     public static bool|\Closure $allowShield = false;
+
+    private bool $isActive = false;
 
     public function getId(): string
     {
@@ -75,61 +78,75 @@ class FilamentSettingsHubPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $pages = [];
-
-        if($this->isSiteSettingAllowed()){
-            $pages[] = SiteSettings::class;
+        if(class_exists(Module::class)){
+            if(\Nwidart\Modules\Facades\Module::find('FilamentSettingsHub')->isEnabled()){
+                $this->isActive = true;
+            }
+        }
+        else {
+            $this->isActive = true;
         }
 
-        if($this->isSocialMenuSettingAllowed()){
-            $pages[] = SocialMenuSettings::class;
+        if($this->isActive) {
+            $pages = [];
+
+            if ($this->isSiteSettingAllowed()) {
+                $pages[] = SiteSettings::class;
+            }
+
+            if ($this->isSocialMenuSettingAllowed()) {
+                $pages[] = SocialMenuSettings::class;
+            }
+
+            if ($this->isLocationSettingAllowed()) {
+                $pages[] = LocationSettings::class;
+            }
+
+            $pages[] = SettingsHub::class;
+
+            $panel->pages($pages);
         }
-
-        if($this->isLocationSettingAllowed()){
-            $pages[] = LocationSettings::class;
-        }
-
-        $pages[] = SettingsHub::class;
-
-        $panel->pages($pages);
 
     }
 
     public function boot(Panel $panel): void
     {
-        $settings = [];
+        if($this->isActive){
+            $settings = [];
 
-        if($this->isSiteSettingAllowed()){
-            $settings[] = SettingHold::make()
-                ->page(SiteSettings::class)
-                ->order(0)
-                ->label('filament-settings-hub::messages.settings.site.title')
-                ->icon('heroicon-o-globe-alt')
-                ->description('filament-settings-hub::messages.settings.site.description')
-                ->group('filament-settings-hub::messages.group');
+            if($this->isSiteSettingAllowed()){
+                $settings[] = SettingHold::make()
+                    ->page(SiteSettings::class)
+                    ->order(0)
+                    ->label('filament-settings-hub::messages.settings.site.title')
+                    ->icon('heroicon-o-globe-alt')
+                    ->description('filament-settings-hub::messages.settings.site.description')
+                    ->group('filament-settings-hub::messages.group');
+            }
+
+            if($this->isSocialMenuSettingAllowed()){
+                $settings[] = SettingHold::make()
+                    ->page(SocialMenuSettings::class)
+                    ->order(0)
+                    ->label('filament-settings-hub::messages.settings.social.title')
+                    ->icon('heroicon-s-bars-3')
+                    ->description('filament-settings-hub::messages.settings.social.description')
+                    ->group('filament-settings-hub::messages.group');
+            }
+
+            if($this->isLocationSettingAllowed()){
+                $settings[] = SettingHold::make()
+                    ->page(LocationSettings::class)
+                    ->order(0)
+                    ->label('filament-settings-hub::messages.settings.location.title')
+                    ->icon('heroicon-o-map')
+                    ->description('filament-settings-hub::messages.settings.location.description')
+                    ->group('filament-settings-hub::messages.group');
+            }
+
+            FilamentSettingsHub::register($settings);
         }
 
-        if($this->isSocialMenuSettingAllowed()){
-            $settings[] = SettingHold::make()
-                ->page(SocialMenuSettings::class)
-                ->order(0)
-                ->label('filament-settings-hub::messages.settings.social.title')
-                ->icon('heroicon-s-bars-3')
-                ->description('filament-settings-hub::messages.settings.social.description')
-                ->group('filament-settings-hub::messages.group');
-        }
-
-        if($this->isLocationSettingAllowed()){
-            $settings[] = SettingHold::make()
-                ->page(LocationSettings::class)
-                ->order(0)
-                ->label('filament-settings-hub::messages.settings.location.title')
-                ->icon('heroicon-o-map')
-                ->description('filament-settings-hub::messages.settings.location.description')
-                ->group('filament-settings-hub::messages.group');
-        }
-
-        FilamentSettingsHub::register($settings);
     }
 
     public static function make(): static
