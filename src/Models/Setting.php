@@ -2,10 +2,14 @@
 
 namespace TomatoPHP\FilamentSettingsHub\Models;
 
-use Eloquent as Model;
+use GeneaLabs\LaravelModelCaching\CachedModel;
+use GeneaLabs\LaravelModelCaching\Traits\Cachable;
 
-class Setting extends Model
+class Setting extends CachedModel
 {
+    use Cachable;
+
+    protected $cachePrefix = "tomato_settings_";
 
     protected $table = 'settings';
 
