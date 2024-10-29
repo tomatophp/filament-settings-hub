@@ -2,7 +2,6 @@
 
 namespace TomatoPHP\FilamentSettingsHub\Pages;
 
-
 use Filament\Pages\Page;
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
 

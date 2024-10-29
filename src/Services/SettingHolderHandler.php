@@ -8,9 +8,6 @@ use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 
 class SettingHolderHandler
 {
-    /**
-     * @var array|null
-     */
     public ?Collection $settings;
 
     public function __construct()
@@ -18,28 +15,17 @@ class SettingHolderHandler
         $this->settings = collect([]);
     }
 
-    /**
-     * @param string $item
-     * @return void
-     */
-    public function register(array|SettingHold $item): static
+    public function register(array | SettingHold $item): void
     {
-
-        if(is_array($item)){
+        if (is_array($item)) {
             foreach ($item as $settingItem) {
                 $this->settings->push($settingItem);
             }
-        }
-        else {
+        } else {
             $this->settings->push($item);
         }
-
-        return $this;
     }
 
-    /**
-     * @return array
-     */
     public function load(): Collection
     {
         return $this->settings;

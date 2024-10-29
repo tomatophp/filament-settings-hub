@@ -10,7 +10,7 @@ trait UseShield
 {
     public function booted(): void
     {
-        if(filament('filament-settings-hub')->isShieldAllowed()){
+        if (filament('filament-settings-hub')->isShieldAllowed()) {
             $this->beforeBooted();
 
             if (! static::canAccess()) {
@@ -35,17 +35,11 @@ trait UseShield
         }
     }
 
-    protected function beforeBooted(): void
-    {
-    }
+    protected function beforeBooted(): void {}
 
-    protected function afterBooted(): void
-    {
-    }
+    protected function afterBooted(): void {}
 
-    protected function beforeShieldRedirects(): void
-    {
-    }
+    protected function beforeShieldRedirects(): void {}
 
     protected function getShieldRedirectPath(): string
     {
@@ -65,10 +59,9 @@ trait UseShield
 
     public static function canAccess(): bool
     {
-        if(filament('filament-settings-hub')->isShieldAllowed()){
+        if (filament('filament-settings-hub')->isShieldAllowed()) {
             return Filament::auth()->user()->can(static::getPermissionName());
-        }
-        else {
+        } else {
             return true;
         }
     }

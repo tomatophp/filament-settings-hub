@@ -1,5 +1,5 @@
 <?php
 
 return [
-    "show_hint" => true
+    'show_hint' => true,
 ];
