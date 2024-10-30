@@ -49,7 +49,7 @@ trait UseShield
 
     protected static function getPermissionName(): string
     {
-        if(class_exists('BezhanSalleh\FilamentShield\Support\Utils')) {
+        if (class_exists('BezhanSalleh\FilamentShield\Support\Utils')) {
             return Str::of(class_basename(static::class))
                 ->prepend(
                     Str::of(Utils::getPagePermissionPrefix())
@@ -57,9 +57,8 @@ trait UseShield
                         ->toString()
                 )
                 ->toString();
-        }
-        else {
-            return "";
+        } else {
+            return '';
         }
     }
 

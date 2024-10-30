@@ -11,7 +11,6 @@ beforeEach(function () {
     actingAs(User::factory()->create());
 });
 
-
 function checkSiteSettingExists($setting, $name): void
 {
     assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
