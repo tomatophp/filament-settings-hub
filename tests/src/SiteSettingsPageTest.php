@@ -11,6 +11,7 @@ beforeEach(function () {
     actingAs(User::factory()->create());
 });
 
+
 function checkSiteSettingExists($setting, $name): void
 {
     assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
@@ -28,6 +29,7 @@ it('has site site_name exists', function () {
 it('has site_description exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
     checkSiteSettingExists($siteSettings, 'site_description');
+
 });
 
 it('has site_keywords exists', function () {
@@ -37,7 +39,6 @@ it('has site_keywords exists', function () {
 
 it('has site_phone exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-
     checkSiteSettingExists($siteSettings, 'site_phone');
 });
 

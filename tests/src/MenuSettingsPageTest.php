@@ -13,7 +13,6 @@ beforeEach(function () {
 
 it('has site site_social exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-
     assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
         'name' => 'site_social',
         'group' => 'sites',
