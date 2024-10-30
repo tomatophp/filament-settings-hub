@@ -2,6 +2,9 @@
 
 # Filament Settings Hub
 
+[![Dependabot Updates](https://github.com/tomatophp/filament-settings-hub/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/tomatophp/filament-settings-hub/actions/workflows/dependabot/dependabot-updates)
+[![PHP Code Styling](https://github.com/tomatophp/filament-settings-hub/actions/workflows/fix-php-code-styling.yml/badge.svg)](https://github.com/tomatophp/filament-settings-hub/actions/workflows/fix-php-code-styling.yml)
+[![Tests](https://github.com/tomatophp/filament-settings-hub/actions/workflows/tests.yml/badge.svg)](https://github.com/tomatophp/filament-settings-hub/actions/workflows/tests.yml)
 [![Latest Stable Version](https://poser.pugx.org/tomatophp/filament-settings-hub/version.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 [![License](https://poser.pugx.org/tomatophp/filament-settings-hub/license.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
 [![Downloads](https://poser.pugx.org/tomatophp/filament-settings-hub/d/total.svg)](https://packagist.org/packages/tomatophp/filament-settings-hub)
