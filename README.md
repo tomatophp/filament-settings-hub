@@ -41,7 +41,7 @@ finally register the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
 you can use this package by use this helper function
 
 ```php
-settings($key);
+settings($key, 'default value');
 ```
 
 to register new setting to the hub page you can use Facade class on your provider like this
