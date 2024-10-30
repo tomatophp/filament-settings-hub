@@ -57,6 +57,7 @@ class LocationSettings extends SettingsPage
                     ->label(trans('filament-settings-hub::messages.settings.location.form.site_location'))
                     ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_location")' : null),
                 TextInput::make('site_currency')
+                    ->required()
                     ->label(trans('filament-settings-hub::messages.settings.location.form.site_currency'))
                     ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_currency")' : null),
                 TextInput::make('site_language')

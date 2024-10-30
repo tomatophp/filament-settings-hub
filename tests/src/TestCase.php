@@ -18,8 +18,10 @@ use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
+use Spatie\LaravelSettings\LaravelSettingsServiceProvider;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubServiceProvider;
 use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
+use function Pest\Laravel\assertDatabaseHas;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -41,6 +43,7 @@ abstract class TestCase extends BaseTestCase
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
             Service::class,
+            LaravelSettingsServiceProvider::class,
             SpatieLaravelSettingsPluginServiceProvider::class,
             FilamentSettingsHubServiceProvider::class,
             AdminPanelProvider::class,
@@ -50,6 +53,7 @@ abstract class TestCase extends BaseTestCase
     protected function defineDatabaseMigrations(): void
     {
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
     }
 
     public function getEnvironmentSetUp($app): void
@@ -62,6 +66,20 @@ abstract class TestCase extends BaseTestCase
         $app['config']->set('view.paths', [
             ...$app['config']->get('view.paths'),
             __DIR__ . '/../resources/views',
+        ]);
+    }
+
+     /**
+     * @param $setting
+     * @param $name
+     * @return void
+     */
+    public function checkSettingExists($setting, $name): void
+    {
+        assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
+            'name' => $name,
+            'group' => 'sites',
+            'payload' => is_null($setting->{$name}) ? json_encode(null) : json_encode($setting->{$name}),
         ]);
     }
 }

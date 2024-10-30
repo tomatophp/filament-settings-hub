@@ -47,6 +47,8 @@ class SocialMenuSettings extends SettingsPage
         return [
             Grid::make(['default' => 1])->schema([
                 Repeater::make('site_social')
+                    ->required()
+                    ->minItems(1)
                     ->label(trans('filament-settings-hub::messages.settings.social.form.site_social'))
                     ->schema([
                         TextInput::make('vendor')->label(trans('filament-settings-hub::messages.settings.social.form.vendor')),

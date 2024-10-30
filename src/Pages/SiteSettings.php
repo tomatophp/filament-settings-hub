@@ -69,6 +69,7 @@ class SiteSettings extends SettingsPage
         return [
             Grid::make(['default' => 2])->schema([
                 TextInput::make('site_name')
+                    ->required()
                     ->label(trans('filament-settings-hub::messages.settings.site.form.site_name'))
                     ->columnSpan(2)
                     ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_name")' : null),

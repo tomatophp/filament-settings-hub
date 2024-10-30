@@ -5,9 +5,11 @@ try {
     if (! function_exists('setting')) {
         function setting(string $key, mixed $default = null): mixed
         {
-            $payload = \TomatoPHP\FilamentSettingsHub\Models\Setting::where('name', $key)->first('payload');
+            $payload = \TomatoPHP\FilamentSettingsHub\Models\Setting::query()
+                ->where('name', $key)
+                ->first('payload');
 
-            return $payload ?: $default;
+            return $payload ? $payload->payload : $default;
         }
     }
     if (! function_exists('dollar')) {
