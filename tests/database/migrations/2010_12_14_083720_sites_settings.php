@@ -22,12 +22,6 @@ return new class extends Migration
         $this->createSetting('sites.site_social', []);
     }
 
-
-    /**
-     * @param string $setting
-     * @param mixed $value
-     * @return void
-     */
     private function createSetting(string $setting, mixed $value): void
     {
         $exSetting = explode('.', $setting);
@@ -36,10 +30,10 @@ return new class extends Migration
 
         $settingExists = \Illuminate\Support\Facades\DB::table('settings')
             ->where('name', $name)
-            ->where('group',  $group)
+            ->where('group', $group)
             ->first();
 
-        if(!$settingExists){
+        if (! $settingExists) {
             \Illuminate\Support\Facades\DB::table('settings')
                 ->insert([
                     'group' => $group,
@@ -47,7 +41,7 @@ return new class extends Migration
                     'locked' => 0,
                     'payload' => json_encode($value),
                     'created_at' => now(),
-                    'updated_at' => now()
+                    'updated_at' => now(),
                 ]);
         }
     }

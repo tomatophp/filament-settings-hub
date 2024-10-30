@@ -21,6 +21,7 @@ use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Spatie\LaravelSettings\LaravelSettingsServiceProvider;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubServiceProvider;
 use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
+
 use function Pest\Laravel\assertDatabaseHas;
 
 abstract class TestCase extends BaseTestCase
@@ -69,11 +70,6 @@ abstract class TestCase extends BaseTestCase
         ]);
     }
 
-     /**
-     * @param $setting
-     * @param $name
-     * @return void
-     */
     public function checkSettingExists($setting, $name): void
     {
         assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [

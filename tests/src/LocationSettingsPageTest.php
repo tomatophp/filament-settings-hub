@@ -1,6 +1,7 @@
 <?php
 
 use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
+
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
@@ -11,27 +12,27 @@ beforeEach(function () {
 });
 
 it('has site site_address exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
     $this->checkSettingExists($siteSettings, 'site_address');
 });
 
 it('has site site_phone_code exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
     $this->checkSettingExists($siteSettings, 'site_phone_code');
 });
 
 it('has site site_location exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
     $this->checkSettingExists($siteSettings, 'site_location');
 });
 
 it('has site site_currency exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
     $this->checkSettingExists($siteSettings, 'site_currency');
 });
 
 it('has site site_language exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
     $this->checkSettingExists($siteSettings, 'site_language');
 });
 
@@ -52,9 +53,9 @@ it('can validate location settings before save', function () {
 });
 
 it('can save site settings', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings();
+    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
     $data = $siteSettings->toArray();
-    $data['site_currency'] = "USD";
+    $data['site_currency'] = 'USD';
 
     livewire(\TomatoPHP\FilamentSettingsHub\Pages\LocationSettings::class)
         ->fillForm($data)
@@ -63,6 +64,6 @@ it('can save site settings', function () {
     assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
         'name' => 'site_currency',
         'group' => 'sites',
-        'payload' => json_encode("USD"),
+        'payload' => json_encode('USD'),
     ]);
 });
