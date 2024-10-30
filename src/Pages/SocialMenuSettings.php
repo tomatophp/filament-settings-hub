@@ -2,23 +2,13 @@
 
 namespace TomatoPHP\FilamentSettingsHub\Pages;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
-use Filament\Facades\Filament;
-use Filament\Notifications\Notification;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\TextInput;
 use Filament\Pages\Actions\Action;
 use Filament\Pages\SettingsPage;
-use Filament\Forms\Components\Grid;
-use Illuminate\Support\Str;
-use Spatie\Permission\Models\Permission;
-use Spatie\Sitemap\SitemapGenerator;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
-use Filament\Pages\Actions\ButtonAction;
-use Filament\Forms\Components\FileUpload;
 use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
-
 
 class SocialMenuSettings extends SettingsPage
 {
@@ -36,14 +26,14 @@ class SocialMenuSettings extends SettingsPage
     protected function getActions(): array
     {
         $tenant = \Filament\Facades\Filament::getTenant();
-        if($tenant){
+        if ($tenant) {
             return [
-                Action::make('back')->action(fn()=> redirect()->route('filament.'.filament()->getCurrentPanel()->getId().'.pages.settings-hub', $tenant))->color('danger')->label(trans('filament-settings-hub::messages.back')),
+                Action::make('back')->action(fn () => redirect()->route('filament.' . filament()->getCurrentPanel()->getId() . '.pages.settings-hub', $tenant))->color('danger')->label(trans('filament-settings-hub::messages.back')),
             ];
         }
 
         return [
-            Action::make('back')->action(fn()=> redirect()->route('filament.'.filament()->getCurrentPanel()->getId().'.pages.settings-hub'))->color('danger')->label(trans('filament-settings-hub::messages.back')),
+            Action::make('back')->action(fn () => redirect()->route('filament.' . filament()->getCurrentPanel()->getId() . '.pages.settings-hub'))->color('danger')->label(trans('filament-settings-hub::messages.back')),
         ];
     }
 
@@ -57,13 +47,15 @@ class SocialMenuSettings extends SettingsPage
         return [
             Grid::make(['default' => 1])->schema([
                 Repeater::make('site_social')
+                    ->required()
+                    ->minItems(1)
                     ->label(trans('filament-settings-hub::messages.settings.social.form.site_social'))
                     ->schema([
                         TextInput::make('vendor')->label(trans('filament-settings-hub::messages.settings.social.form.vendor')),
                         TextInput::make('link')->url()->label(trans('filament-settings-hub::messages.settings.social.form.link')),
                     ])
-                    ->hint(config('filament-settings-hub.show_hint') ?'setting("site_social")': null),
-            ])
+                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_social")' : null),
+            ]),
 
         ];
     }

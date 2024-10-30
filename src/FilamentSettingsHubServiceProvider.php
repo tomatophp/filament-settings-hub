@@ -3,11 +3,9 @@
 namespace TomatoPHP\FilamentSettingsHub;
 
 use Illuminate\Support\ServiceProvider;
-use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
-use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 use TomatoPHP\FilamentSettingsHub\Services\SettingHolderHandler;
 
-require_once __DIR__.'/helpers.php';
+require_once __DIR__ . '/helpers.php';
 
 class FilamentSettingsHubServiceProvider extends ServiceProvider
 {
@@ -15,43 +13,42 @@ class FilamentSettingsHubServiceProvider extends ServiceProvider
     {
         //Register generate command
         $this->commands([
-           \TomatoPHP\FilamentSettingsHub\Console\FilamentSettingsHubInstall::class,
+            \TomatoPHP\FilamentSettingsHub\Console\FilamentSettingsHubInstall::class,
         ]);
 
         //Register Config file
-        $this->mergeConfigFrom(__DIR__.'/../config/filament-settings-hub.php', 'filament-settings-hub');
+        $this->mergeConfigFrom(__DIR__ . '/../config/filament-settings-hub.php', 'filament-settings-hub');
 
         //Publish Config
         $this->publishes([
-           __DIR__.'/../config/filament-settings-hub.php' => config_path('filament-settings-hub.php'),
+            __DIR__ . '/../config/filament-settings-hub.php' => config_path('filament-settings-hub.php'),
         ], 'filament-settings-hub-config');
 
         //Register Migrations
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         //Publish Migrations
         $this->publishes([
-           __DIR__.'/../database/migrations' => database_path('migrations'),
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
         ], 'filament-settings-hub-migrations');
         //Register views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'filament-settings-hub');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-settings-hub');
 
         //Publish Views
         $this->publishes([
-           __DIR__.'/../resources/views' => resource_path('views/vendor/filament-settings-hub'),
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/filament-settings-hub'),
         ], 'filament-settings-hub-views');
 
         //Register Langs
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'filament-settings-hub');
+        $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'filament-settings-hub');
 
         //Publish Lang
         $this->publishes([
-           __DIR__.'/../resources/lang' => base_path('lang/vendor/filament-settings-hub'),
+            __DIR__ . '/../resources/lang' => base_path('lang/vendor/filament-settings-hub'),
         ], 'filament-settings-hub-lang');
 
-
         $this->app->bind('filament-settings-hub', function () {
-            return new SettingHolderHandler();
+            return new SettingHolderHandler;
         });
     }
 

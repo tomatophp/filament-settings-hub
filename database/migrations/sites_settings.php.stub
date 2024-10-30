@@ -2,7 +2,7 @@
 
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-class SitesSettings extends SettingsMigration
+return new class extends SettingsMigration
 {
     public function up(): void
     {
@@ -21,4 +21,4 @@ class SitesSettings extends SettingsMigration
         $this->migrator->add('sites.site_language', 'English');
         $this->migrator->add('sites.site_social', []);
     }
-}
+};

@@ -9,23 +9,23 @@ class Setting extends CachedModel
 {
     use Cachable;
 
-    protected $cachePrefix = "tomato_settings_";
+    protected $cachePrefix = 'tomato_settings_';
 
     protected $table = 'settings';
 
     protected $casts = [
-        'payload' => "json"
+        'payload' => 'json',
     ];
 
     protected $dates = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     public $fillable = [
         'id',
         'name',
         'group',
-        'payload'
+        'payload',
     ];
 }

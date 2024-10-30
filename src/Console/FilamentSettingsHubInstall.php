@@ -29,7 +29,6 @@ class FilamentSettingsHubInstall extends Command
         parent::__construct();
     }
 
-
     /**
      * Execute the console command.
      *
@@ -40,14 +39,14 @@ class FilamentSettingsHubInstall extends Command
         $this->info('Publish Vendor Assets');
         //Register migrations
         if (! class_exists('SitesSettings')) {
-            $stubPath =  __DIR__ . '/../../database/migrations/sites_settings.php.stub';
+            $stubPath = __DIR__ . '/../../database/migrations/sites_settings.php.stub';
             $databasePath = database_path('migrations/' . date('Y_m_d_His', time()) . '_sites_settings.php');
 
             File::copy($stubPath, $databasePath);
         }
         $this->callSilent('optimize:clear');
-        $this->artisanCommand(["migrate"]);
-        $this->artisanCommand(["optimize:clear"]);
+        $this->artisanCommand(['migrate']);
+        $this->artisanCommand(['optimize:clear']);
         $this->info('Filament Settings Hub installed successfully.');
     }
 }

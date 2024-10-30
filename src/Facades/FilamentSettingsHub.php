@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Facade;
 use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 
 /**
- *  @method static \Illuminate\Support\Collection get()
+ * @method static \Illuminate\Support\Collection get()
  * @method static \Illuminate\Support\Collection load()
  * @method static \TomatoPHP\FilamentSettingsHub\Services\SettingHolderHandler register(array|SettingHold $item)
  */

@@ -13,17 +13,10 @@ Manage your Filament app settings with GUI and helpers
 ![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/settings-hub.png)
 ![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/setting-page.png)
 
-
 ## Installation
 
 ```bash
 composer require tomatophp/filament-settings-hub
-```
-
-now you need to publish and migrate settings table
-
-```bash
-php artisan vendor:publish --provider="Spatie\LaravelSettings\LaravelSettingsServiceProvider" --tag="migrations"
 ```
 
 after publish and migrate settings table please run this command
@@ -32,7 +25,7 @@ after publish and migrate settings table please run this command
 php artisan filament-settings-hub:install
 ```
 
-finally reigster the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
+finally register the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
 
 ```php
 ->plugin(
@@ -48,7 +41,7 @@ finally reigster the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
 you can use this package by use this helper function
 
 ```php
-settings($key);
+settings($key, 'default value');
 ```
 
 to register new setting to the hub page you can use Facade class on your provider like this
@@ -121,6 +114,30 @@ you can publish migrations file by use this command
 
 ```bash
 php artisan vendor:publish --tag="filament-settings-hub-migrations"
+```
+
+## Testing
+
+if you like to run `PEST` testing just use this command
+
+```bash
+composer test
+```
+
+## Code Style
+
+if you like to fix the code style just use this command
+
+```bash
+composer format
+```
+
+## PHPStan
+
+if you like to check the code by `PHPStan` just use this command
+
+```bash
+composer analyse
 ```
 
 ## Other Filament Packages
