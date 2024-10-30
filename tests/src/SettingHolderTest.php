@@ -11,7 +11,7 @@ it('can attach new setting to setting holder', function () {
             ->label('filament-settings-hub::messages.settings.social.title')
             ->icon('heroicon-s-bars-3')
             ->description('filament-settings-hub::messages.settings.social.description')
-            ->group('filament-settings-hub::messages.group')
+            ->group('filament-settings-hub::messages.group'),
     ]);
 
     \PHPUnit\Framework\assertEquals(1, \TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub::load()->count());

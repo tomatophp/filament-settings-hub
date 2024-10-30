@@ -21,6 +21,7 @@ use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 use Spatie\LaravelSettings\LaravelSettingsServiceProvider;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubServiceProvider;
 use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
+
 use function Pest\Laravel\assertDatabaseHas;
 
 abstract class TestCase extends BaseTestCase
@@ -66,20 +67,6 @@ abstract class TestCase extends BaseTestCase
         $app['config']->set('view.paths', [
             ...$app['config']->get('view.paths'),
             __DIR__ . '/../resources/views',
-        ]);
-    }
-
-     /**
-     * @param $setting
-     * @param $name
-     * @return void
-     */
-    public function checkSettingExists($setting, $name): void
-    {
-        assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
-            'name' => $name,
-            'group' => 'sites',
-            'payload' => is_null($setting->{$name}) ? json_encode(null) : json_encode($setting->{$name}),
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace TomatoPHP\FilamentSettingsHub\Traits;
 
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Facades\Filament;
+use Filament\Notifications\Notification;
 use Illuminate\Support\Str;
 
 trait UseShield
@@ -48,13 +49,18 @@ trait UseShield
 
     protected static function getPermissionName(): string
     {
-        return Str::of(class_basename(static::class))
-            ->prepend(
-                Str::of(Utils::getPagePermissionPrefix())
-                    ->append('_')
-                    ->toString()
-            )
-            ->toString();
+        if(class_exists('BezhanSalleh\FilamentShield\Support\Utils')) {
+            return Str::of(class_basename(static::class))
+                ->prepend(
+                    Str::of(Utils::getPagePermissionPrefix())
+                        ->append('_')
+                        ->toString()
+                )
+                ->toString();
+        }
+        else {
+            return "";
+        }
     }
 
     public static function canAccess(): bool
