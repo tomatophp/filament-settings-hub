@@ -11,40 +11,50 @@ beforeEach(function () {
     actingAs(User::factory()->create());
 });
 
+
+function checkSiteSettingExists($setting, $name): void
+{
+    assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
+        'name' => $name,
+        'group' => 'sites',
+        'payload' => is_null($setting->{$name}) ? json_encode(null) : json_encode($setting->{$name}),
+    ]);
+}
+
 it('has site site_name exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_name');
+    checkSiteSettingExists($siteSettings, 'site_name');
 });
 
 it('has site_description exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_description');
+    checkSiteSettingExists($siteSettings, 'site_description');
+
 });
 
 it('has site_keywords exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_keywords');
+    checkSiteSettingExists($siteSettings, 'site_keywords');
 });
 
 it('has site_phone exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-
-    $this->checkSettingExists($siteSettings, 'site_phone');
+    checkSiteSettingExists($siteSettings, 'site_phone');
 });
 
 it('has site_profile exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_profile');
+    checkSiteSettingExists($siteSettings, 'site_profile');
 });
 
 it('has site_author exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_author');
+    checkSiteSettingExists($siteSettings, 'site_author');
 });
 
 it('has site_email exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_email');
+    checkSiteSettingExists($siteSettings, 'site_email');
 });
 
 it('can render site settings page resource', function () {

@@ -11,29 +11,38 @@ beforeEach(function () {
     actingAs(User::factory()->create());
 });
 
+function checkLocationSettingExists($setting, $name): void
+{
+    assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
+        'name' => $name,
+        'group' => 'sites',
+        'payload' => is_null($setting->{$name}) ? json_encode(null) : json_encode($setting->{$name}),
+    ]);
+}
+
 it('has site site_address exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_address');
+    checkLocationSettingExists($siteSettings, 'site_address');
 });
 
 it('has site site_phone_code exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_phone_code');
+    checkLocationSettingExists($siteSettings, 'site_phone_code');
 });
 
 it('has site site_location exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_location');
+    checkLocationSettingExists($siteSettings, 'site_location');
 });
 
 it('has site site_currency exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_currency');
+    checkLocationSettingExists($siteSettings, 'site_currency');
 });
 
 it('has site site_language exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_language');
+    checkLocationSettingExists($siteSettings, 'site_language');
 });
 
 it('can render location settings page resource', function () {

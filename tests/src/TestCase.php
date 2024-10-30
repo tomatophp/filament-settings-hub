@@ -69,13 +69,4 @@ abstract class TestCase extends BaseTestCase
             __DIR__ . '/../resources/views',
         ]);
     }
-
-    public function checkSettingExists($setting, $name): void
-    {
-        assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
-            'name' => $name,
-            'group' => 'sites',
-            'payload' => is_null($setting->{$name}) ? json_encode(null) : json_encode($setting->{$name}),
-        ]);
-    }
 }

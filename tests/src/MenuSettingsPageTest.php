@@ -13,7 +13,11 @@ beforeEach(function () {
 
 it('has site site_social exists', function () {
     $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
-    $this->checkSettingExists($siteSettings, 'site_social');
+    assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
+        'name' => 'site_social',
+        'group' => 'sites',
+        'payload' => is_null($siteSettings->site_social) ? json_encode(null) : json_encode($siteSettings->site_social),
+    ]);
 });
 
 it('can render social menu settings page resource', function () {
