@@ -12,13 +12,8 @@ return new class extends Migration
         $this->createSetting('sites.site_profile', '');
         $this->createSetting('sites.site_logo', '');
         $this->createSetting('sites.site_author', 'Fady Mondy');
-        $this->createSetting('sites.site_address', 'Cairo, Egypt');
         $this->createSetting('sites.site_email', 'info@3x1.io');
         $this->createSetting('sites.site_phone', '+201207860084');
-        $this->createSetting('sites.site_phone_code', '+2');
-        $this->createSetting('sites.site_location', 'Egypt');
-        $this->createSetting('sites.site_currency', 'EGP');
-        $this->createSetting('sites.site_language', 'English');
         $this->createSetting('sites.site_social', []);
     }
 
