@@ -33,7 +33,6 @@ finally register the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
 ```php
 ->plugin(
     \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
-        ->allowLocationSettings()
         ->allowSiteSettings()
         ->allowSocialMenuSettings()
 )
@@ -67,14 +66,6 @@ FilamentSettingsHub::register([
 ```
 
 and now you can see your settings on the setting hub page.
-
-we have a ready to use helper for currency settings
-
-```php
-dollar($amount)
-```
-
-it will return the money amount with the currency symbol
 
 ## Allow Shield 
 
