@@ -30,16 +30,5 @@ return [
                 'link' => 'الرابط',
             ],
         ],
-        'location' => [
-            'title' => 'إعدادات الموقع الجغرافي',
-            'description' => 'قم بإدارة موقعك الجعرافي واللغة والعملة',
-            'form' => [
-                'site_address' => 'العنوان',
-                'site_phone_code' => 'كود هاتف الدولة',
-                'site_location' => 'الدولة',
-                'site_currency' => 'العملة',
-                'site_language' => 'اللغة',
-            ],
-        ],
     ],
 ];

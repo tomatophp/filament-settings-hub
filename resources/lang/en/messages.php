@@ -30,16 +30,5 @@ return [
                 'link' => 'Link',
             ],
         ],
-        'location' => [
-            'title' => 'Location Settings',
-            'description' => 'Manage your location settings',
-            'form' => [
-                'site_address' => 'Site Address',
-                'site_phone_code' => 'Site Phone Code',
-                'site_location' => 'Site Location',
-                'site_currency' => 'Site Currency',
-                'site_language' => 'Site Language',
-            ],
-        ],
     ],
 ];

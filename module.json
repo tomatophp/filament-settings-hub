@@ -23,7 +23,7 @@
     "icon": "heroicon-c-cog",
     "placeholder": "https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/3x1io-tomato-settings-hub.jpg",
     "type": "plugin",
-    "version": "v1.0.9",
+    "version": "v2.0.1",
     "github" : "https://github.com/tomatophp/filament-settings-hub",
     "docs" : "https://github.com/tomatophp/filament-settings-hub"
 }

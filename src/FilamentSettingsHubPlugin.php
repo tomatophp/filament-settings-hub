@@ -6,7 +6,6 @@ use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
 use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
-use TomatoPHP\FilamentSettingsHub\Pages\LocationSettings;
 use TomatoPHP\FilamentSettingsHub\Pages\SettingsHub;
 use TomatoPHP\FilamentSettingsHub\Pages\SiteSettings;
 use TomatoPHP\FilamentSettingsHub\Pages\SocialMenuSettings;
@@ -19,8 +18,6 @@ class FilamentSettingsHubPlugin implements Plugin
     public static bool | \Closure $allowSiteSettings = true;
 
     public static bool | \Closure $allowSocialMenuSettings = true;
-
-    public static bool | \Closure $allowLocationSettings = true;
 
     public static bool | \Closure $allowShield = false;
 
@@ -62,21 +59,9 @@ class FilamentSettingsHubPlugin implements Plugin
         return $this->evaluate(self::$allowSocialMenuSettings);
     }
 
-    public function isLocationSettingAllowed(): bool
-    {
-        return $this->evaluate(self::$allowLocationSettings);
-    }
-
     public function isShieldAllowed(): bool
     {
         return $this->evaluate(self::$allowShield);
-    }
-
-    public function allowLocationSettings(bool | \Closure $allow = true): static
-    {
-        self::$allowLocationSettings = $allow;
-
-        return $this;
     }
 
     public function register(Panel $panel): void
@@ -89,10 +74,6 @@ class FilamentSettingsHubPlugin implements Plugin
 
         if ($this->isSocialMenuSettingAllowed()) {
             $pages[] = SocialMenuSettings::class;
-        }
-
-        if ($this->isLocationSettingAllowed()) {
-            $pages[] = LocationSettings::class;
         }
 
         $pages[] = SettingsHub::class;
@@ -121,16 +102,6 @@ class FilamentSettingsHubPlugin implements Plugin
                 ->label('filament-settings-hub::messages.settings.social.title')
                 ->icon('heroicon-s-bars-3')
                 ->description('filament-settings-hub::messages.settings.social.description')
-                ->group('filament-settings-hub::messages.group');
-        }
-
-        if ($this->isLocationSettingAllowed()) {
-            $settings[] = SettingHold::make()
-                ->page(LocationSettings::class)
-                ->order(0)
-                ->label('filament-settings-hub::messages.settings.location.title')
-                ->icon('heroicon-o-map')
-                ->description('filament-settings-hub::messages.settings.location.description')
                 ->group('filament-settings-hub::messages.group');
         }
 

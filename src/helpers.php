@@ -12,18 +12,6 @@ try {
             return $payload ? $payload->payload : $default;
         }
     }
-    if (! function_exists('dollar')) {
-        function dollar(float | int $total): false | string
-        {
-            $getDollar = setting('site_currency');
-            if ($getDollar) {
-                return '<b>' . number_format($total, 2) . "</b><small>$getDollar</small>";
-            } else {
-                return false;
-            }
-        }
-    }
-
 } catch (\Exception $e) {
     if (! function_exists('setting')) {
         function setting($key)
