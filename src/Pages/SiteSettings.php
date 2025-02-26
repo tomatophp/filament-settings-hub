@@ -86,10 +86,14 @@ class SiteSettings extends SettingsPage
                     ->columnSpan(2)
                     ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_phone")' : null),
                 FileUpload::make('site_profile')
+                    ->disk(config('filament-settings-hub.upload.disk'))
+                    ->directory(config('filament-settings-hub.upload.directory'))
                     ->label(trans('filament-settings-hub::messages.settings.site.form.site_profile'))
                     ->columnSpan(2)
                     ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_profile")' : null),
                 FileUpload::make('site_logo')
+                    ->disk(config('filament-settings-hub.upload.disk'))
+                    ->directory(config('filament-settings-hub.upload.directory'))
                     ->label(trans('filament-settings-hub::messages.settings.site.form.site_logo'))
                     ->columnSpan(2)
                     ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_logo")' : null),

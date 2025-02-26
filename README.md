@@ -84,6 +84,17 @@ to make a secure setting page just use this trait
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
 ```
 
+## Change Upload File System for Logo / Profile
+
+on your config `filament-settings-hub.php` you can change the file system for the logo / profile
+
+```php
+'upload' => [
+    'disk' => 's3',
+    'path' => 'settings',
+],
+```
+
 ## Publish Assets
 
 you can publish config file by use this command

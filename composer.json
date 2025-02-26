@@ -37,6 +37,7 @@
     ],
     "scripts": {
         "testbench": "vendor/bin/testbench package:discover --ansi",
+        "db": "vendor/bin/testbench package:create-sqlite-db && vendor/bin/testbench migrate",
         "analyse": "vendor/bin/phpstan analyse src tests",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
@@ -50,25 +51,24 @@
         }
     },
     "require": {
-        "php": "^8.2|^8.3",
+        "php": "^8.2|^8.3|^8.4",
         "tomatophp/console-helpers": "^1.1",
-        "filament/filament": "^3.2",
-        "filament/notifications": "^3.2",
-        "filament/spatie-laravel-settings-plugin": "^3.2",
-        "genealabs/laravel-model-caching": "^11.0",
-        "spatie/laravel-sitemap": "^7.2"
+        "filament/filament": "^3.3",
+        "filament/notifications": "^3.3",
+        "filament/spatie-laravel-settings-plugin": "^3.3",
+        "spatie/laravel-sitemap": "^7.3"
     },
     "require-dev": {
-        "laravel/pint": "^1.18",
+        "laravel/pint": "^1.21",
         "livewire/livewire": "^2.10|^3.0",
-        "nunomaduro/larastan": "^2.9",
-        "orchestra/testbench": "^9.5",
-        "pestphp/pest": "^2.36",
-        "pestphp/pest-plugin-laravel": "^2.4",
-        "pestphp/pest-plugin-livewire": "^2.1",
+        "nunomaduro/larastan": "^3.1",
+        "orchestra/testbench": "^10.0",
+        "pestphp/pest": "^3.7",
+        "pestphp/pest-plugin-laravel": "^3.1",
+        "pestphp/pest-plugin-livewire": "^3.0",
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan-deprecation-rules": "^1.2",
-        "phpstan/phpstan-phpunit": "^1.4"
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0"
     },
-    "version": "2.0.1"
+    "version": "2.0.2"
 }

@@ -11,38 +11,38 @@ class FilamentSettingsHubServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //Register generate command
+        // Register generate command
         $this->commands([
             \TomatoPHP\FilamentSettingsHub\Console\FilamentSettingsHubInstall::class,
         ]);
 
-        //Register Config file
+        // Register Config file
         $this->mergeConfigFrom(__DIR__ . '/../config/filament-settings-hub.php', 'filament-settings-hub');
 
-        //Publish Config
+        // Publish Config
         $this->publishes([
             __DIR__ . '/../config/filament-settings-hub.php' => config_path('filament-settings-hub.php'),
         ], 'filament-settings-hub-config');
 
-        //Register Migrations
+        // Register Migrations
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
-        //Publish Migrations
+        // Publish Migrations
         $this->publishes([
             __DIR__ . '/../database/migrations' => database_path('migrations'),
         ], 'filament-settings-hub-migrations');
-        //Register views
+        // Register views
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'filament-settings-hub');
 
-        //Publish Views
+        // Publish Views
         $this->publishes([
             __DIR__ . '/../resources/views' => resource_path('views/vendor/filament-settings-hub'),
         ], 'filament-settings-hub-views');
 
-        //Register Langs
+        // Register Langs
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'filament-settings-hub');
 
-        //Publish Lang
+        // Publish Lang
         $this->publishes([
             __DIR__ . '/../resources/lang' => base_path('lang/vendor/filament-settings-hub'),
         ], 'filament-settings-hub-lang');

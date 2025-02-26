@@ -37,7 +37,7 @@ class FilamentSettingsHubInstall extends Command
     public function handle()
     {
         $this->info('Publish Vendor Assets');
-        //Register migrations
+        // Register migrations
         if (! class_exists('SitesSettings')) {
             $stubPath = __DIR__ . '/../../database/migrations/sites_settings.php.stub';
             $databasePath = database_path('migrations/' . date('Y_m_d_His', time()) . '_sites_settings.php');
