@@ -21,8 +21,8 @@ it('has site site_social exists', function () {
 });
 
 it('can render social menu settings page resource', function () {
-    get(\TomatoPHP\FilamentSettingsHub\Pages\SocialMenuSettings::getUrl())->assertSuccessful();
-});
+get(\TomatoPHP\FilamentSettingsHub\Pages\SocialMenuSettings::getUrl())->assertSuccessful();
+    });
 
 it('can validate social menu settings before save', function () {
 

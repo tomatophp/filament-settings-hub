@@ -6,5 +6,5 @@ return [
     'upload' => [
         'disk' => 'local',
         'directory' => 'public',
-    ]
+    ],
 ];

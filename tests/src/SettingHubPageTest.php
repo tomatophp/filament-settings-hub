@@ -10,5 +10,5 @@ beforeEach(function () {
 });
 
 it('can render setting hub page resource', function () {
-    get(\TomatoPHP\FilamentSettingsHub\Pages\SettingsHub::getUrl())->assertSuccessful();
-});
+get(\TomatoPHP\FilamentSettingsHub\Pages\SettingsHub::getUrl())->assertSuccessful();
+    });

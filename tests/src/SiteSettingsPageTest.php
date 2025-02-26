@@ -57,8 +57,8 @@ it('has site_email exists', function () {
 });
 
 it('can render site settings page resource', function () {
-    get(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::getUrl())->assertSuccessful();
-});
+get(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::getUrl())->assertSuccessful();
+    });
 
 it('can validate site settings before save', function () {
     livewire(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::class)
