@@ -1,14 +1,19 @@
 <?php
 
-use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
+use function Pest\Laravel\get;
 
 use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\get;
 use function Pest\Livewire\livewire;
+use function Pest\Laravel\assertDatabaseHas;
+use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
+use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 
 beforeEach(function () {
     actingAs(User::factory()->create());
+
+    $this->panel->plugins([
+        FilamentSettingsHubPlugin::make(),
+    ]);
 });
 
 it('has site site_social exists', function () {
@@ -30,7 +35,7 @@ it('can validate social menu settings before save', function () {
         ->fillForm([
             'site_social' => null,
         ])
-        ->call('save')
+        ->call(method: 'save')
         ->assertHasFormErrors([
             'site_social' => 'required',
         ]);
@@ -48,12 +53,12 @@ it('can save social menu settings', function () {
 
     livewire(\TomatoPHP\FilamentSettingsHub\Pages\SocialMenuSettings::class)
         ->fillForm($data)
-        ->callAction('save')
+        ->call('save')
         ->assertHasNoFormErrors();
 
     assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
         'name' => 'site_social',
         'group' => 'sites',
-        'payload' => json_encode($siteSettings->site_social),
+        'payload' => json_encode($data['site_social']),
     ]);
 });

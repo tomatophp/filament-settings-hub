@@ -4,16 +4,16 @@ namespace TomatoPHP\FilamentSettingsHub\Pages;
 
 use Filament\Pages\Page;
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
-
+use BackedEnum;
 class SettingsHub extends Page
 {
     use UseShield;
 
-    public static ?string $navigationIcon = 'heroicon-o-cog';
+    public static string|BackedEnum|null $navigationIcon = 'heroicon-o-cog';
 
-    public static string $view = 'filament-settings-hub::index';
+    public string $view = 'filament-settings-hub::index';
 
-    public static function getNavigationGroup(): ?string
+    public static function getNavigationGroup(): string|BackedEnum|null
     {
         return trans('filament-settings-hub::messages.group');
     }

@@ -92,7 +92,7 @@ class FilamentSettingsHubPlugin implements Plugin
                 ->label('filament-settings-hub::messages.settings.site.title')
                 ->icon('heroicon-o-globe-alt')
                 ->description('filament-settings-hub::messages.settings.site.description')
-                ->group('filament-settings-hub::messages.group');
+                ->group('filament-settings-hub::messages.settings.group');
         }
 
         if ($this->isSocialMenuSettingAllowed()) {
@@ -102,7 +102,7 @@ class FilamentSettingsHubPlugin implements Plugin
                 ->label('filament-settings-hub::messages.settings.social.title')
                 ->icon('heroicon-s-bars-3')
                 ->description('filament-settings-hub::messages.settings.social.description')
-                ->group('filament-settings-hub::messages.group');
+                ->group('filament-settings-hub::messages.settings.group');
         }
 
         FilamentSettingsHub::register($settings);

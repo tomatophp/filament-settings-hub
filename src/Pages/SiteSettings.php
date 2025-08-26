@@ -2,22 +2,25 @@
 
 namespace TomatoPHP\FilamentSettingsHub\Pages;
 
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Grid;
+use BackedEnum;
+use Filament\Actions\Action;
+use Filament\Schemas\Schema;
+use Filament\Pages\SettingsPage;
+use Spatie\Sitemap\SitemapGenerator;
+use Filament\Schemas\Components\Grid;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
-use Filament\Pages\Actions\Action;
-use Filament\Pages\SettingsPage;
-use Spatie\Sitemap\SitemapGenerator;
-use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+use Filament\Schemas\Components\Section;
+use Filament\Forms\Components\FileUpload;
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
+use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
 
 class SiteSettings extends SettingsPage
 {
     use UseShield;
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-cog';
 
     protected static string $settings = SitesSettings::class;
 
@@ -64,46 +67,53 @@ class SiteSettings extends SettingsPage
             ->send();
     }
 
-    protected function getFormSchema(): array
+    public function form(Schema $schema): Schema
     {
-        return [
-            Grid::make(['default' => 2])->schema([
-                TextInput::make('site_name')
-                    ->required()
-                    ->label(trans('filament-settings-hub::messages.settings.site.form.site_name'))
-                    ->columnSpan(2)
-                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_name")' : null),
-                TextArea::make('site_description')
-                    ->label(trans('filament-settings-hub::messages.settings.site.form.site_description'))
-                    ->columnSpan(2)
-                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_description")' : null),
-                TextArea::make('site_keywords')
-                    ->label(trans('filament-settings-hub::messages.settings.site.form.site_keywords'))
-                    ->columnSpan(2)
-                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_keywords")' : null),
-                TextInput::make('site_phone')
-                    ->label(trans('filament-settings-hub::messages.settings.site.form.site_phone'))
-                    ->columnSpan(2)
-                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_phone")' : null),
-                FileUpload::make('site_profile')
-                    ->disk(config('filament-settings-hub.upload.disk'))
-                    ->directory(config('filament-settings-hub.upload.directory'))
-                    ->label(trans('filament-settings-hub::messages.settings.site.form.site_profile'))
-                    ->columnSpan(2)
-                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_profile")' : null),
-                FileUpload::make('site_logo')
-                    ->disk(config('filament-settings-hub.upload.disk'))
-                    ->directory(config('filament-settings-hub.upload.directory'))
-                    ->label(trans('filament-settings-hub::messages.settings.site.form.site_logo'))
-                    ->columnSpan(2)
-                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_logo")' : null),
-                TextInput::make('site_author')
-                    ->label(trans('filament-settings-hub::messages.settings.site.form.site_author'))
-                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_author")' : null),
-                TextInput::make('site_email')
-                    ->label(trans('filament-settings-hub::messages.settings.site.form.site_email'))
-                    ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_email")' : null),
-            ]),
-        ];
+        return $schema
+             ->schema([
+                Section::make(trans('filament-settings-hub::messages.settings.site.site_seo'))
+                    ->description(trans('filament-settings-hub::messages.settings.site.site_name_description'))
+                    ->schema([
+                        TextInput::make('site_name')
+                            ->required()
+                            ->label(trans('filament-settings-hub::messages.settings.site.form.site_name'))
+                            ->columnSpan(2)
+                            ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_name")' : null),
+                        TextArea::make('site_description')
+                            ->label(trans('filament-settings-hub::messages.settings.site.form.site_description'))
+                            ->columnSpan(2)
+                            ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_description")' : null),
+                        TextArea::make('site_keywords')
+                            ->label(trans('filament-settings-hub::messages.settings.site.form.site_keywords'))
+                            ->columnSpan(2)
+                            ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_keywords")' : null),
+                        TextInput::make('site_phone')
+                            ->label(trans('filament-settings-hub::messages.settings.site.form.site_phone'))
+                            ->columnSpan(2)
+                            ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_phone")' : null),
+                        TextInput::make('site_author')
+                            ->label(trans('filament-settings-hub::messages.settings.site.form.site_author'))
+                            ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_author")' : null),
+                        TextInput::make('site_email')
+                            ->label(trans('filament-settings-hub::messages.settings.site.form.site_email'))
+                            ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_email")' : null),
+                    ])->columns(2),
+                    Section::make(trans('filament-settings-hub::messages.settings.site.site_images'))
+                        ->description(trans('filament-settings-hub::messages.settings.site.site_logo_description'))
+                        ->schema([
+                        FileUpload::make('site_profile')
+                            ->disk(config('filament-settings-hub.upload.disk'))
+                            ->directory(config('filament-settings-hub.upload.directory'))
+                            ->label(trans('filament-settings-hub::messages.settings.site.form.site_profile'))
+                            ->columnSpan(2)
+                            ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_profile")' : null),
+                        FileUpload::make('site_logo')
+                            ->disk(config('filament-settings-hub.upload.disk'))
+                            ->directory(config('filament-settings-hub.upload.directory'))
+                            ->label(trans('filament-settings-hub::messages.settings.site.form.site_logo'))
+                            ->columnSpan(2)
+                            ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_logo")' : null),
+                        ])->columns(2),
+        ])->columns(1);
     }
 }

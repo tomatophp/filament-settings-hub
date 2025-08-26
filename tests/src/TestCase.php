@@ -2,36 +2,48 @@
 
 namespace TomatoPHP\FilamentSettingsHub\Tests;
 
-use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
+use Filament\Panel;
+use Filament\Facades\Filament;
+use Filament\FilamentServiceProvider;
+use Livewire\LivewireServiceProvider;
+use Filament\Forms\FormsServiceProvider;
+use Filament\Tables\TablesServiceProvider;
+use Orchestra\Testbench\Attributes\WithEnv;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
-use Filament\FilamentServiceProvider;
-use Filament\Forms\FormsServiceProvider;
+use Filament\Schemas\SchemasServiceProvider;
+use Filament\Support\SupportServiceProvider;
+use Filament\Widgets\WidgetsServiceProvider;
+use Orchestra\Testbench\Concerns\WithWorkbench;
 use Filament\Infolists\InfolistsServiceProvider;
+use Orchestra\Testbench\TestCase as BaseTestCase;
+use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
+use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
 use Filament\Notifications\NotificationsServiceProvider;
 use Filament\SpatieLaravelSettingsPluginServiceProvider;
-use Filament\Support\SupportServiceProvider;
-use Filament\Tables\TablesServiceProvider;
-use Filament\Widgets\WidgetsServiceProvider;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\Attributes\WithEnv;
-use Orchestra\Testbench\Concerns\WithWorkbench;
-use Orchestra\Testbench\TestCase as BaseTestCase;
-use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Spatie\LaravelSettings\LaravelSettingsServiceProvider;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubServiceProvider;
-use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
+use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
 
 #[WithEnv('DB_CONNECTION', 'testing')]
 abstract class TestCase extends BaseTestCase
 {
-    use RefreshDatabase;
+    use LazilyRefreshDatabase;
     use WithWorkbench;
+
+    public ?Panel $panel = null;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->panel = Filament::getCurrentOrDefaultPanel();
+    }
 
     protected function getPackageProviders($app): array
     {
-        return [
+        $providers = [
             ActionsServiceProvider::class,
             BladeCaptureDirectiveServiceProvider::class,
             BladeHeroiconsServiceProvider::class,
@@ -44,11 +56,16 @@ abstract class TestCase extends BaseTestCase
             SupportServiceProvider::class,
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
+            SchemasServiceProvider::class,
             LaravelSettingsServiceProvider::class,
             SpatieLaravelSettingsPluginServiceProvider::class,
             FilamentSettingsHubServiceProvider::class,
             AdminPanelProvider::class,
         ];
+
+        sort($providers);
+
+        return $providers;
     }
 
     protected function defineDatabaseMigrations(): void

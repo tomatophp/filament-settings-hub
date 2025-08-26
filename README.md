@@ -1,4 +1,4 @@
-![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/3x1io-tomato-settings-hub.jpg)
+![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/fadymondy-tomato-settings-hub.jpg)
 
 # Filament Settings Hub
 
@@ -21,7 +21,7 @@ Manage your Filament app settings with GUI and helpers
 ```bash
 composer require tomatophp/filament-settings-hub
 ```
-
+fadymondy
 after publish and migrate settings table please run this command
 
 ```bash
@@ -58,7 +58,7 @@ FilamentSettingsHub::register([
         ->label('Site Settings') // to translate label just use direct translation path like `messages.text.name`
         ->icon('heroicon-o-globe-alt')
         ->route('filament.admin.pages.site-settings') // use page / route
-        ->page(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::class) // use page / route 
+        ->page(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::class) // use page / route
         ->description('Name, Logo, Site Profile') // to translate label just use direct translation path like `messages.text.name`
         ->group('General') // to translate label just use direct translation path like `messages.text.name`,
 ]);
@@ -67,7 +67,7 @@ FilamentSettingsHub::register([
 
 and now you can see your settings on the setting hub page.
 
-## Allow Shield 
+## Allow Shield
 
 to allow [filament-shield](https://github.com/bezhanSalleh/filament-shield) for the settings please install it and config it first then you can use this method
 
@@ -78,7 +78,7 @@ to allow [filament-shield](https://github.com/bezhanSalleh/filament-shield) for 
 )
 ```
 
-to make a secure setting page just use this trait 
+to make a secure setting page just use this trait
 
 ```php
 use TomatoPHP\FilamentSettingsHub\Traits\UseShield;
