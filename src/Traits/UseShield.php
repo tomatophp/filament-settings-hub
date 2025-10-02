@@ -51,11 +51,7 @@ trait UseShield
     {
         if (class_exists('BezhanSalleh\FilamentShield\Support\Utils')) {
             return Str::of(class_basename(static::class))
-                ->prepend(
-                    Str::of(Utils::getPagePermissionPrefix())
-                        ->append('_')
-                        ->toString()
-                )
+                ->prepend("View:")
                 ->toString();
         } else {
             return '';

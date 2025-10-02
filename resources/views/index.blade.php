@@ -16,8 +16,9 @@
                             if(\Illuminate\Support\Facades\Route::getRoutes()->getRoutesByName()[$item->route]){
                                 $page = str(\Illuminate\Support\Facades\Route::getRoutes()->getRoutesByName()[$item->route]->action['controller'])->afterLast('\\');
                             }
+                            dd($page);
                         @endphp
-                        @if($page && \Filament\Facades\Filament::auth()->user()->can('page_'.$page))
+                        @if($page && \Filament\Facades\Filament::auth()->user()->can('View:'.$page))
 
                             <x-filament::section style="text-align: center;">
                                 <a href="{{ $tenant ? route($item->route, $tenant) : route($item->route) }}"  class="font-bold text-lg" style="font-size: 1.25rem; font-weight: 600;">
@@ -60,7 +61,7 @@
                     @endif
                 @elseif($item->page)
                     @if(filament('filament-settings-hub')->isShieldAllowed())
-                        @if(\Filament\Facades\Filament::auth()->user()->can('page_'.str($item->page)->afterLast('\\')))
+                        @if(\Filament\Facades\Filament::auth()->user()->can('View:'.str($item->page)->afterLast('\\')))
                             <x-filament::section style="text-align: center;">
                                 <a href="{{ app($item->page)::getUrl() }}" class="font-bold text-lg" style="font-size: 1.25rem; font-weight: 600;">
                                     <div style="display: flex; justify-content: center; align-items: center; padding: 0.5rem;">
