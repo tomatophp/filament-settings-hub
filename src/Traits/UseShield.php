@@ -2,7 +2,6 @@
 
 namespace TomatoPHP\FilamentSettingsHub\Traits;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Str;
@@ -51,7 +50,7 @@ trait UseShield
     {
         if (class_exists('BezhanSalleh\FilamentShield\Support\Utils')) {
             return Str::of(class_basename(static::class))
-                ->prepend("View:")
+                ->prepend('View:')
                 ->toString();
         } else {
             return '';
