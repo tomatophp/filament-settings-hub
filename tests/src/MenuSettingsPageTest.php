@@ -1,12 +1,12 @@
 <?php
 
-use function Pest\Laravel\get;
+use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
 
 use function Pest\Laravel\actingAs;
-use function Pest\Livewire\livewire;
 use function Pest\Laravel\assertDatabaseHas;
-use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
-use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
+use function Pest\Laravel\get;
+use function Pest\Livewire\livewire;
 
 beforeEach(function () {
     actingAs(User::factory()->create());
@@ -26,8 +26,8 @@ it('has site site_social exists', function () {
 });
 
 it('can render social menu settings page resource', function () {
-get(\TomatoPHP\FilamentSettingsHub\Pages\SocialMenuSettings::getUrl())->assertSuccessful();
-    });
+    get(\TomatoPHP\FilamentSettingsHub\Pages\SocialMenuSettings::getUrl())->assertSuccessful();
+});
 
 it('can validate social menu settings before save', function () {
 
