@@ -30,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->plugin(
-                FilamentSettingsHubPlugin::make()
+                FilamentSettingsHubPlugin::make()->allowColorSettings()
             )
             ->middleware([
                 EncryptCookies::class,

@@ -37,12 +37,16 @@ class FilamentSettingsHubInstall extends Command
     public function handle()
     {
         $this->info('Publish Vendor Assets');
-        // Register migrations
-        if (! class_exists('SitesSettings')) {
-            $stubPath = __DIR__ . '/../../database/migrations/sites_settings.php.stub';
-            $databasePath = database_path('migrations/' . date('Y_m_d_His', time()) . '_sites_settings.php');
+        // Publish each settings migration once; running install again must not duplicate them.
+        foreach (['sites_settings', 'site_colors_settings'] as $migration) {
+            if (File::glob(database_path("migrations/*_{$migration}.php")) !== []) {
+                continue;
+            }
 
-            File::copy($stubPath, $databasePath);
+            File::copy(
+                __DIR__ . "/../../database/migrations/{$migration}.php.stub",
+                database_path('migrations/' . date('Y_m_d_His') . "_{$migration}.php"),
+            );
         }
         $this->callSilent('optimize:clear');
         $this->artisanCommand(['migrate']);

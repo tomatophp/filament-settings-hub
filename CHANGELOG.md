@@ -1,3 +1,8 @@
+### V5.0.1
+
+- optional site color settings page (primary, secondary, tertiary) in its own `site_colors` settings group, enabled with `->allowColorSettings()` (thanks @gkid-693, #23)
+- `filament-settings-hub:install` publishes each settings migration once, running it again no longer duplicates them
+
 # Changelog
 
 ## v5.0.0

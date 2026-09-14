@@ -48,8 +48,16 @@ finally register the plugin on `/app/Providers/Filament/AdminPanelProvider.php`
     \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
         ->allowSiteSettings()
         ->allowSocialMenuSettings()
+        ->allowColorSettings() // optional, see below
 )
 ```
+
+### Color settings
+
+`allowColorSettings()` adds a page to store your site's primary, secondary and tertiary colors. It is off by default
+because it uses its own `site_colors` settings group: `php artisan filament-settings-hub:install` publishes that settings
+migration (running the command again never duplicates migrations), then run `php artisan migrate`.
+Read the values anywhere with `setting('site_primary_color')`, `setting('site_secondary_color')` and `setting('site_tertiary_color')`.
 
 ## Usage
 

@@ -36,5 +36,14 @@ return [
                 'link' => 'Link',
             ],
         ],
+        'color' => [
+            'title' => 'System Colors',
+            'description' => 'Manage your colors',
+            'form' => [
+                'primary_color' => 'Primary Color',
+                'secondary_color' => 'Second Color',
+                'tertiary_color' => 'Tertiary Color',
+            ],
+        ],
     ],
 ];
