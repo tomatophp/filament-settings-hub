@@ -3,6 +3,7 @@
 namespace TomatoPHP\FilamentSettingsHub;
 
 use Illuminate\Support\ServiceProvider;
+use TomatoPHP\FilamentSettingsHub\Console\FilamentSettingsHubInstall;
 use TomatoPHP\FilamentSettingsHub\Services\SettingHolderHandler;
 
 require_once __DIR__ . '/helpers.php';
@@ -13,7 +14,7 @@ class FilamentSettingsHubServiceProvider extends ServiceProvider
     {
         // Register generate command
         $this->commands([
-            \TomatoPHP\FilamentSettingsHub\Console\FilamentSettingsHubInstall::class,
+            FilamentSettingsHubInstall::class,
         ]);
 
         // Register Config file

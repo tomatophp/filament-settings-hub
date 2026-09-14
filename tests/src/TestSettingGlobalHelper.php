@@ -1,9 +1,11 @@
 <?php
 
+use TomatoPHP\FilamentSettingsHub\Models\Setting;
+
 it('can get setting from setting() helper', function () {
     $setting = setting('site_name');
 
-    \Pest\Laravel\assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
+    \Pest\Laravel\assertDatabaseHas(Setting::class, [
         'name' => 'site_name',
         'group' => 'sites',
         'payload' => json_encode($setting),

@@ -4,6 +4,7 @@ namespace TomatoPHP\FilamentSettingsHub\Pages;
 
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -35,7 +36,7 @@ class SiteSettings extends SettingsPage
 
     protected function getActions(): array
     {
-        $tenant = \Filament\Facades\Filament::getTenant();
+        $tenant = Filament::getTenant();
         if ($tenant) {
             return [
                 Action::make('sitemap')
@@ -78,11 +79,11 @@ class SiteSettings extends SettingsPage
                             ->label(trans('filament-settings-hub::messages.settings.site.form.site_name'))
                             ->columnSpan(2)
                             ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_name")' : null),
-                        TextArea::make('site_description')
+                        Textarea::make('site_description')
                             ->label(trans('filament-settings-hub::messages.settings.site.form.site_description'))
                             ->columnSpan(2)
                             ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_description")' : null),
-                        TextArea::make('site_keywords')
+                        Textarea::make('site_keywords')
                             ->label(trans('filament-settings-hub::messages.settings.site.form.site_keywords'))
                             ->columnSpan(2)
                             ->hint(config('filament-settings-hub.show_hint') ? 'setting("site_keywords")' : null),

@@ -4,6 +4,7 @@ namespace TomatoPHP\FilamentSettingsHub\Pages;
 
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Facades\Filament;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\SettingsPage;
@@ -27,7 +28,7 @@ class SocialMenuSettings extends SettingsPage
 
     protected function getActions(): array
     {
-        $tenant = \Filament\Facades\Filament::getTenant();
+        $tenant = Filament::getTenant();
         if ($tenant) {
             return [
                 Action::make('back')->action(fn () => redirect()->route('filament.' . filament()->getCurrentPanel()->getId() . '.pages.settings-hub', $tenant))->color('danger')->label(trans('filament-settings-hub::messages.back')),

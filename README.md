@@ -16,12 +16,20 @@ Manage your Filament app settings with GUI and helpers
 ![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/settings-hub.png)
 ![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/setting-page.png)
 
+## Version Compatibility
+
+| Package | Filament | Laravel | PHP |
+|---------|----------|---------|-----|
+| 5.x     | 5.x      | 12.x / 13.x | 8.2+ |
+| 4.x     | 4.x      | 11.x / 12.x | 8.2+ |
+| 2.x     | 3.x      | 10.x / 11.x | 8.1+ |
+
 ## Installation
 
 ```bash
 composer require tomatophp/filament-settings-hub
 ```
-fadymondy
+
 after publish and migrate settings table please run this command
 
 ```bash

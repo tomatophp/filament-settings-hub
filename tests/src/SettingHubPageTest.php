@@ -1,5 +1,6 @@
 <?php
 
+use TomatoPHP\FilamentSettingsHub\Pages\SettingsHub;
 use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -10,5 +11,5 @@ beforeEach(function () {
 });
 
 it('can render setting hub page resource', function () {
-    get(\TomatoPHP\FilamentSettingsHub\Pages\SettingsHub::getUrl())->assertSuccessful();
+    get(SettingsHub::getUrl())->assertSuccessful();
 });

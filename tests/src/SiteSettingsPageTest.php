@@ -1,5 +1,8 @@
 <?php
 
+use TomatoPHP\FilamentSettingsHub\Models\Setting;
+use TomatoPHP\FilamentSettingsHub\Pages\SiteSettings;
+use TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
 use TomatoPHP\FilamentSettingsHub\Tests\Models\User;
 
 use function Pest\Laravel\actingAs;
@@ -13,7 +16,7 @@ beforeEach(function () {
 
 function checkSiteSettingExists($setting, $name): void
 {
-    assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
+    assertDatabaseHas(Setting::class, [
         'name' => $name,
         'group' => 'sites',
         'payload' => is_null($setting->{$name}) ? json_encode(null) : json_encode($setting->{$name}),
@@ -21,47 +24,47 @@ function checkSiteSettingExists($setting, $name): void
 }
 
 it('has site site_name exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+    $siteSettings = new SitesSettings;
     checkSiteSettingExists($siteSettings, 'site_name');
 });
 
 it('has site_description exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+    $siteSettings = new SitesSettings;
     checkSiteSettingExists($siteSettings, 'site_description');
 
 });
 
 it('has site_keywords exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+    $siteSettings = new SitesSettings;
     checkSiteSettingExists($siteSettings, 'site_keywords');
 });
 
 it('has site_phone exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+    $siteSettings = new SitesSettings;
     checkSiteSettingExists($siteSettings, 'site_phone');
 });
 
 it('has site_profile exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+    $siteSettings = new SitesSettings;
     checkSiteSettingExists($siteSettings, 'site_profile');
 });
 
 it('has site_author exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+    $siteSettings = new SitesSettings;
     checkSiteSettingExists($siteSettings, 'site_author');
 });
 
 it('has site_email exists', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+    $siteSettings = new SitesSettings;
     checkSiteSettingExists($siteSettings, 'site_email');
 });
 
 it('can render site settings page resource', function () {
-    get(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::getUrl())->assertSuccessful();
+    get(SiteSettings::getUrl())->assertSuccessful();
 });
 
 it('can validate site settings before save', function () {
-    livewire(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::class)
+    livewire(SiteSettings::class)
         ->fillForm([
             'site_name' => null,
         ])
@@ -72,15 +75,15 @@ it('can validate site settings before save', function () {
 });
 
 it('can save site settings', function () {
-    $siteSettings = new \TomatoPHP\FilamentSettingsHub\Settings\SitesSettings;
+    $siteSettings = new SitesSettings;
     $data = $siteSettings->toArray();
     $data['site_name'] = 'new';
 
-    livewire(\TomatoPHP\FilamentSettingsHub\Pages\SiteSettings::class)
+    livewire(SiteSettings::class)
         ->fillForm($data)
         ->call('save');
 
-    assertDatabaseHas(\TomatoPHP\FilamentSettingsHub\Models\Setting::class, [
+    assertDatabaseHas(Setting::class, [
         'name' => 'site_name',
         'group' => 'sites',
         'payload' => json_encode('new'),

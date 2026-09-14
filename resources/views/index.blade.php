@@ -16,7 +16,6 @@
                             if(\Illuminate\Support\Facades\Route::getRoutes()->getRoutesByName()[$item->route]){
                                 $page = str(\Illuminate\Support\Facades\Route::getRoutes()->getRoutesByName()[$item->route]->action['controller'])->afterLast('\\');
                             }
-                            dd($page);
                         @endphp
                         @if($page && \Filament\Facades\Filament::auth()->user()->can('View:'.$page))
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -23,13 +24,13 @@ return new class extends Migration
         $group = $exSetting[0];
         $name = $exSetting[1];
 
-        $settingExists = \Illuminate\Support\Facades\DB::table('settings')
+        $settingExists = DB::table('settings')
             ->where('name', $name)
             ->where('group', $group)
             ->first();
 
         if (! $settingExists) {
-            \Illuminate\Support\Facades\DB::table('settings')
+            DB::table('settings')
                 ->insert([
                     'group' => $group,
                     'name' => $name,

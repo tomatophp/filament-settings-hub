@@ -1,10 +1,11 @@
 <?php
 
+use TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub;
 use TomatoPHP\FilamentSettingsHub\Pages\SocialMenuSettings;
 use TomatoPHP\FilamentSettingsHub\Services\Contracts\SettingHold;
 
 it('can attach new setting to setting holder', function () {
-    \TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub::register([
+    FilamentSettingsHub::register([
         SettingHold::make()
             ->page(SocialMenuSettings::class)
             ->order(0)
@@ -14,5 +15,5 @@ it('can attach new setting to setting holder', function () {
             ->group('filament-settings-hub::messages.group'),
     ]);
 
-    \PHPUnit\Framework\assertEquals(1, \TomatoPHP\FilamentSettingsHub\Facades\FilamentSettingsHub::load()->count());
+    \PHPUnit\Framework\assertEquals(1, FilamentSettingsHub::load()->count());
 });
