@@ -13,6 +13,11 @@ Manage your Filament app settings with GUI and helpers
 
 ## Screenshots
 
+Try it live on [demo.tomatophp.com](https://demo.tomatophp.com).
+
+![Demo dark](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/demo-dark.png)
+![Demo light](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/demo-light.png)
+
 ![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/settings-hub.png)
 ![Screenshot](https://raw.githubusercontent.com/tomatophp/filament-settings-hub/master/arts/setting-page.png)
 
