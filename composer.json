@@ -2,6 +2,7 @@
     "name": "tomatophp/filament-settings-hub",
     "type": "library",
     "description": "Manage your Filament app settings with GUI and helpers",
+    "homepage": "https://tomatophp.com/en/plugins/filament-settings-hub",
     "keywords": [
         "php",
         "laravel",
